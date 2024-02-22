@@ -11,6 +11,12 @@
         "laravel/nova": "^4.0",
         "ext-json": "*"
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "NovaItemsField\\": "src/"
