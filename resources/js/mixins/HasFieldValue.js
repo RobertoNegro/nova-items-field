@@ -1,3 +1,17 @@
+const sanitizeValue = (value) => {
+  while (typeof value === 'string') {
+    try {
+      value = JSON.parse(value);
+    } catch {
+      value = null;
+    }
+  }
+  if (!value) {
+    value = [];
+  }
+  return value;
+};
+
 export default {
   computed: {
     shouldDisplayIndexAsList() {
@@ -13,7 +27,7 @@ export default {
     },
 
     fieldHasValue() {
-        let fieldValue = this.field.value;
+        let fieldValue = sanitizeValue(this.field.value);
         return fieldValue && Array.isArray(fieldValue) && fieldValue.length;
     },
 
@@ -25,7 +39,7 @@ export default {
       if (this.field.displayedAs) {
         return String(this.field.displayedAs)
       } else {
-        return this.field.value;
+        return sanitizeValue(this.field.value);
       }
     }
   }
